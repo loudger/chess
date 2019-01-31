@@ -3,9 +3,39 @@ from figure import King, Queen, Bishop, Knight, Rook, Pawn
 
 class Chessboard:
 	def __init__(self):
+		self.tmp_color_value = 'dark'
 		self.board = {}
 		for i in range(8,0,-1):
-			self.board[str(i)] = dict.fromkeys(['a','b','c','d','e','f','g','h'], 'empty')
+			self.board[str(i)] = dict.fromkeys(['a','b','c','d','e','f','g','h'], {
+				'figure':'empty',
+				'space_color': None
+				})
+			for let in ['a','b','c','d','e','f','g','h']:
+				if self.tmp_color_value == 'dark':
+					self.tmp_color_value = 'ligth'
+				else: 
+					if self.tmp_color_value == 'ligth':
+						self.tmp_color_value = 'dark'
+				print(i, end = ' ')
+				print(let)
+				print(self.tmp_color_value)
+				self.board[str(i)][let]['space_color'] = self.tmp_color_value
+		del self.tmp_color_value
+
+	# def auxiliary_func_set_color(self):
+	# 	if self.tmp_color_value == 'dark':
+	# 		self.tmp_color_value = 'ligth'
+	# 		return 'ligth'
+	# 	else: 
+	# 		if self.tmp_color_value == 'ligth':
+	# 			self.tmp_color_value = 'dark'
+	# 		return 'dark'
+
+	def return_figure(self, num, let):
+		return self.board[num][let]['figure']
+
+	def return_color_space(self, num, let):
+		return self.board[num][let]['color']
 
 	def print(self):
 		for i in range (8, -1, -1):
@@ -13,9 +43,9 @@ class Chessboard:
 			if i != 0:
 				print (i, end = '|')
 				for let in ['a','b','c','d','e','f','g','h']:
-					print (str('{}{}').format(self.board[str(i)][let], 
-						(lambda x: x.color[0:1] if x != 'empty' else '')(self.board[str(i)][let]) ) ,
-					end =str(' '*(9-len(self.board[str(i)][let].__str__()) - (lambda x: 0 if x == 'empty' else 1 )(self.board[str(i)][let]))+'|') )
+					print (str('{}{}').format(self.board[str(i)][let]['figure'], 
+						(lambda x: x.color[0:1] if x != 'empty' else '')(self.board[str(i)][let]['figure']) ) ,
+					end =str(' '*(9-len(self.board[str(i)][let]['figure'].__str__()) - (lambda x: 0 if x == 'empty' else 1 )(self.board[str(i)][let]['figure']))+'|') )
 				print()
 		print(end = ' |')
 		for let in ['a','b','c','d','e','f','g','h']:
@@ -24,26 +54,26 @@ class Chessboard:
 	def filling(self):
 		# white
 		for let in ['a', 'h']:
-			self.board['1'][let] = Rook('White')
+			self.board['1'][let]['figure'] = Rook('White')
 		for let in ['b', 'g']:
-			self.board['1'][let] = Knight('White')
+			self.board['1'][let]['figure'] = Knight('White')
 		for let in ['c', 'f']:
-			self.board['1'][let] = Bishop('White')
-		self.board['1']['e'] = King('White')
-		self.board['1']['d'] = Queen('White')
+			self.board['1'][let]['figure'] = Bishop('White')
+		self.board['1']['e']['figure'] = King('White')
+		self.board['1']['d']['figure'] = Queen('White')
 		for let in ['a','b','c','d','e','f','g','h']:
-			self.board['2'][let] = Pawn('White')
+			self.board['2'][let]['figure'] = Pawn('White')
 		# black
 		for let in ['a', 'h']:
-			self.board['8'][let] = Rook('Black')
+			self.board['8'][let]['figure'] = Rook('Black')
 		for let in ['b', 'g']:
-			self.board['8'][let] = Knight('Black')
+			self.board['8'][let]['figure'] = Knight('Black')
 		for let in ['c', 'f']:
-			self.board['8'][let] = Bishop('Black')
-		self.board['8']['e'] = King('Black')
-		self.board['8']['d'] = Queen('Black')
+			self.board['8'][let]['figure'] = Bishop('Black')
+		self.board['8']['e']['figure'] = King('Black')
+		self.board['8']['d']['figure'] = Queen('Black')
 		for let in ['a','b','c','d','e','f','g','h']:
-			self.board['7'][let] = Pawn('Black')
+			self.board['7'][let]['figure'] = Pawn('Black')
 		
 		def checkup_for_check(self, attack_col, defense_col):
 			pass
@@ -66,4 +96,5 @@ class Chessboard:
 
 a = Chessboard()
 a.filling()
-a.print()
+# a.print()
+print(a.board)
