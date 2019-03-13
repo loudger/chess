@@ -14,41 +14,37 @@ class Figure:
     """
     def __init__(self, color):
         self.color = color
+        self.untouched = True
+
+    def touch(self):
+        self.untouched = False
 
     def __repr__(self):
         return repr(self.__class__.__name__)
 
 
 class King(Figure):
-    def __init__(self, color):
-        Figure.__init__(self, color)
-        self.untouched = True
+    
+    pass
 
 
 class Queen(Figure):
-    def __init__(self, color):
-        Figure.__init__(self, color)
+    pass
 
 
 class Bishop(Figure):
-    def __init__(self, color):
-        Figure.__init__(self, color)
+    pass
 
 
 class Knight(Figure):
-    def __init__(self, color):
-        Figure.__init__(self, color)
+    pass
 
 
 class Rook(Figure):
-    def __init__(self, color):
-        Figure.__init__(self, color)
-        self.untouched = True
+    pass
 
 
 class Pawn(Figure):
-    def __init__(self, color):
-        Figure.__init__(self, color)
-        self.untouched = True
+    pass
 
 
