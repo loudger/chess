@@ -1,4 +1,4 @@
-.vscode/*
-.idea/*
-source/__pycache__/*
+/.vscode/*
+/.idea/*
+/source/__pycache__/*
 
