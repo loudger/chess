@@ -89,41 +89,10 @@ class Chessboard():
 			untested_cells[0].remove(remove_coord)
 		return untested_cells
 
-	
-	def give_figure_color(self,coord):
-
-		''' опр цвет'''
-		pass
-
 
 	def game_is_ready(self):
 		pass
 
-
-	def checkup_for_check(self, attack_col, defense_col):
-		pass
-
-
-	def checkup_empty_space(self, scr_coord):
-		'''Проверяет поле находится ли на нём фигура
-		'''
-		num, let = self.uncover_values(scr_coord)
-		if self.board[num][let] == 'empty':
-			return True
-		else:
-			return False
-
-
-	def checkup_space_for_move(self, num, let, own_col):
-		'''Проверяет может ли туда ходить фигура
-		'''
-		if self.board[num][let] == 'empty':
-			return True
-		else:
-			if self.board[num][let].colour == own_col:
-				return False
-			else:
-				return True
 
 	# def auxiliary_func_set_colour(self):
 	# 	if self.tmp_colour_value == 'dark':
